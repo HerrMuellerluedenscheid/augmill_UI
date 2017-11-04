@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<link rel="stylesheet" href="/app.css">
+
+<body ng-app='app'>
+
+
+<!-- angular version -->
+<div ng-controller='PostsCtrl' class='container'>
+
+	<!-- Input field -->
+	<input ng-model='postBody' class='form-control' />
+
+	<!-- Post button -->
+	<button ng-click='addPost()' class='btn btn-default'>Add Post</button>
+	<h1>Recent Posts</h1>
+	<ul class='list-group'>
+		<li ng-repeat='post in posts' class='list-group-item'>
+			<strong>@{{post.username}}</strong>
+			<span>{{post.body}}</span>
+		</li>
+	</ul>
+</div>
+
+
+<!-- load angular js (using current version) -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+<script src='/app.js'></script>
+
+<!-- Load c3.css -->
+<link href="c3/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+<script src="d3/d3.js" charset="utf-8"></script>
+<script src="c3/c3.js"></script>
+
+
+<div id="chart"></div>
+
+<script type="text/javascript">
+	var chart = c3.generate({
+		// bindto: '#chart',
+	    data: {
+	        x: 'x',
+	//        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+	        columns: [
+	            ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
+	//            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
+	            ['data1', 30, 200, 100, 400, 150, 250],
+	            ['data2', 130, 340, 200, 500, 250, 350]
+	        ]
+	    },
+	    axis: {
+	        x: {
+	            type: 'timeseries',
+	            tick: {
+	                format: '%Y-%m-%d'
+	            }
+	        }
+	    }
+	});
+
+	setTimeout(function () {
+	    chart.load({
+	        columns: [
+	            ['data3', 400, 500, 450, 700, 600, 500]
+	        ]
+	    });
+	}, 1000);
+</script>
+</body>
+</html>
