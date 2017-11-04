@@ -15,4 +15,3 @@ app.service('PostsSvc', function($http){
         return $http.post('/api/posts', post)
     }
 })
-

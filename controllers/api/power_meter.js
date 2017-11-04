@@ -7,7 +7,7 @@ var router = require('express').Router()
 
 // using mongodb directly, here instead of mongoose
 var mongodb = require('mongodb')
-var dbHost = "mongodb://localhost:27017/mydb"
+var dbHost = "mongodb://localhost:27017/social"
 var dbObject;
 var MongoClient = mongodb.MongoClient;
 
@@ -18,8 +18,9 @@ MongoClient.connect(dbHost, function(err, db){
 
 // Serves the posts at this url
 router.get('/api/power', function(req, res, next) {
+		console.log('WANT POWER')
         //use the find() API and pass an empty query object to retrieve all records
-        dbObject.collection("mycoll").find({}).toArray(function(err, docs){
+        dbObject.collection("power").find({}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
           var counts = [];
@@ -30,13 +31,13 @@ router.get('/api/power', function(req, res, next) {
             var t = doc['time'];
             //series 2 values array
             var count = doc['count'];
-            dateArray.push({"label": t});
+            dateArray.push({"time": t});
             counts.push({"value" : count});
           }
        
           var dataset = [
             {
-              "seriesname" : "Datum",
+              "seriesname" : "Power",
               "data" : counts
             },
           ];

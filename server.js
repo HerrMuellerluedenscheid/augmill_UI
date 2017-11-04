@@ -13,6 +13,6 @@ app.use(require('./controllers/api/power_meter'))
 // serves the static (html) file
 app.use(require('./controllers/static'))
 
-app.listen(3000, function(){
-	console.log('Server listening on', 3000)
+app.listen(3004, function(){
+	console.log('Server listening on', 3004)
 })
