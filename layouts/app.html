@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-</head>
+<link rel="stylesheet" href="/bootstrap.min.css">
 <link rel="stylesheet" href="/app.css">
+</head>
 
 <body ng-app='app'>
 
@@ -27,11 +27,14 @@
 
 <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
 	<button ng-click='showGraph()', class=btn btn-default>Show Graph</button>
+	<div id="chart"></div>
+    tmin = new ISODate("2017-11-12T20:15:31Z");
+
+	<span>Stromzaehler: {{lastPower}}</span>
 </div>
-<div id="chart">
-	</div>
 <!-- load angular js (using current version) -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script> -->
+<script src="/angular.min.js"></script>
 <script src='/app.js'></script>
 
 <!-- Load c3.css -->

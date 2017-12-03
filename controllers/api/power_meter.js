@@ -16,16 +16,21 @@ MongoClient.connect(dbHost, function(err, db){
   dbObject = db;
 })
 
-// Serves the posts at this url
-router.get('/api/power', function(req, res, next) {
-		console.log('WANT POWER')
+// Serves the power data at this url
+router.get('/api/power/:tmin', function(req, res, next) {
+
         //use the find() API and pass an empty query object to retrieve all records
-        dbObject.collection("power").find({}).toArray(function(err, docs){
+        // tmin = new ISODate("2017-11-12T20:15:31Z");
+        // dbObject.collection("power").find({"createdAt" : {$gte :  tmin}}).toArray(function(err, docs){
+
+          var tmin =  new Date(parseInt(req.params.tmin));
+
+          dbObject.collection("power").find({"time" : {$gte : tmin}}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
           var counts = [];
        
-          for ( index in docs){
+          for ( index in docs ){
             var doc = docs[index];
             //category array
             var t = doc['time'];
@@ -47,7 +52,8 @@ router.get('/api/power', function(req, res, next) {
             "categories" : dateArray
           };
 
-          res.json(response)
+          res.json(response);
+          console.log(res);
         });
       }
     )

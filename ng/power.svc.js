@@ -4,7 +4,7 @@ var app = angular.module('app')
 // which are created and destroyed every time. 
 // Dependency inject $http
 app.service('PowerSvc', function($http) {
-	this.fetch = function() {
-		return $http.get('/api/power')
+	this.fetch = function(tmin) {
+		return $http.get('/api/power/' + tmin);
 	}
 })
