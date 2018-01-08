@@ -8,14 +8,4 @@ mongoose.connect('mongodb://localhost/social', function (){
 	console.log(fallback)
 })
 
-// mongoose.connect('mongodb://localhost/mydb', function (){
-// })
-// .then(function (rest){
-// 	console.log('mongodb connected')
-// })
-// .catch(function(fallback){
-// 	console.log(fallback)
-// })
-
-
 module.exports = mongoose

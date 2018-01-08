@@ -9,12 +9,10 @@
 
 
 <!-- angular version -->
-<div ng-controller='PostsCtrl' class='container'>
+<!-- <div ng-controller='PostsCtrl' class='container'>
 
-	<!-- Input field -->
 	<input ng-model='postBody' class='form-control' />
 
-	<!-- Post button -->
 	<button ng-click='addPost()' class='btn btn-default'>Add Post</button>
 	<h1>Recent Posts</h1>
 	<ul class='list-group'>
@@ -24,14 +22,18 @@
 		</li>
 	</ul>
 </div>
-
+ -->
+<!-- <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'> -->
+<!-- <div ng-init="showGraph(power)" ng-controller="GraphCtrl" class='container' onload="init('power')"> -->
 <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
-	<button ng-click='showGraph()', class=btn btn-default>Show Graph</button>
-	<div id="chart"></div>
-    tmin = new ISODate("2017-11-12T20:15:31Z");
+	<button ng-click='zoomGraphIn()', class=btn btn-default>Zoom In</button>
+	<button ng-click='zoomGraphOut()', class=btn btn-default>Zoom Out</button>
+	<div id="power"></div>
+	<!-- <div id="graphs"></div> -->
 
 	<span>Stromzaehler: {{lastPower}}</span>
 </div>
+
 <!-- load angular js (using current version) -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script> -->
 <script src="/angular.min.js"></script>

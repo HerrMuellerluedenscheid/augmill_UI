@@ -4,6 +4,6 @@ var app = angular.module('app')
 app.controller('PowerCtrl', function($scope, PowerSvc) {
     // This section loads the posts
     PowerSvc.fetch().then(function(response) {
-        $scope.power = response.data
+        $scope.power = response.data;
     })
 })

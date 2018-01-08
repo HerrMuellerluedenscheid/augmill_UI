@@ -3,6 +3,11 @@ var app = angular.module('app')
 app.controller('GraphCtrl', function($scope, PowerSvc) {
 	$scope.chart = null;
 	$scope.power = null;
+	$scope.nminutes_view = 6000.;
+
+	$scope.init = function(column) {
+		$scope.column = column;
+	}
 
 	$scope.zoomGraphIn = function() {
 		$scope.nminutes_view = $scope.nminutes_view / 2.;
@@ -15,12 +20,13 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 	}
 
 	$scope.showGraph = function() {
-
+		$scope.column = 'power';
 		var y = ['Strom'];
 		var x =['x'];
 
+
 		$scope.chart = c3.generate({
-			bindto: '#chart',
+			bindto: '#power',
 			data:{
 				x: 'x',
 				xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
@@ -40,23 +46,19 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
              }
 		})
 		setTimeout(function(){
-
-		}, 100)
+		}, 1000)
 		$scope.setGraphData()
 	}
 
-	$scope.nminutes_view = 60.;
 	$scope.setGraphData = function() {
+
 		var y = ['Strom'];
 		var x = ['x'];
 		var tmax = new Date();
 		var tmin = new Date() - $scope.nminutes_view*1000.;
-		console.log(tmin);
-		console.log($scope.nminutes_view);
-
-		PowerSvc.fetch(tmin=tmin).then(function(response) {
+		
+		PowerSvc.fetch(tmin=tmin, column=$scope.column).then(function(response) {
 			$scope.power = response.data;
-			console.log(response.data)
 			$scope.lastPower = y[y.length-1];
 		})
 
@@ -86,8 +88,8 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 					y
 				]
 			})
-			}
 		}
+	}
 
 	setInterval($scope.setGraphData, 1000);
 })

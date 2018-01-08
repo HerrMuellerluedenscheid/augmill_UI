@@ -7,7 +7,7 @@ var router = require('express').Router()
 
 // using mongodb directly, here instead of mongoose
 var mongodb = require('mongodb')
-var dbHost = "mongodb://localhost:27017/social"
+var dbHost = "mongodb://localhost:27017/muehle"
 var dbObject;
 var MongoClient = mongodb.MongoClient;
 
@@ -17,15 +17,13 @@ MongoClient.connect(dbHost, function(err, db){
 })
 
 // Serves the power data at this url
-router.get('/api/power/:tmin', function(req, res, next) {
+router.get('/api/power/:tmin/:column', function(req, res, next) {
 
-        //use the find() API and pass an empty query object to retrieve all records
-        // tmin = new ISODate("2017-11-12T20:15:31Z");
-        // dbObject.collection("power").find({"createdAt" : {$gte :  tmin}}).toArray(function(err, docs){
 
           var tmin =  new Date(parseInt(req.params.tmin));
 
-          dbObject.collection("power").find({"time" : {$gte : tmin}}).toArray(function(err, docs){
+          // dbObject.collection("power").find({"time" : {$gte : tmin}}).toArray(function(err, docs){
+          dbObject.collection(req.params.column).find({"time" : {$gte : tmin}}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
           var counts = [];
@@ -42,7 +40,7 @@ router.get('/api/power/:tmin', function(req, res, next) {
        
           var dataset = [
             {
-              "seriesname" : "Power",
+              "seriesname" : "power",
               "data" : counts
             },
           ];
@@ -53,7 +51,6 @@ router.get('/api/power/:tmin', function(req, res, next) {
           };
 
           res.json(response);
-          console.log(res);
         });
       }
     )
