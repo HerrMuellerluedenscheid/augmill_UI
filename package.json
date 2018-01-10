@@ -1,5 +1,10 @@
 {
   "name": "muehle_ui",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node boot.js",
+    "postinstall": "gulp build"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
