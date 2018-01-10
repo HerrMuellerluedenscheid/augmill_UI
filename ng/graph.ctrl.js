@@ -66,21 +66,13 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		})
 
 		if ($scope.power !== null) {
-			var last = null;
 			$scope.power.categories.forEach(function(element){
-				if (last === null){
-					last = element.time
-				}
-				else{
-					var tmp = new Date(element.time) - new Date(last)
-					y.push(tmp / 1000.);
-					x.push(element.time)
-					last = element.time
-				}
+				y.push(element.data);
+				x.push(element.time);
 			})
 
 			$scope.chart.axis.max({y: 10, x: new Date()});
-			$scope.chart.axis.min({y: -10, x: tmin});
+			$scope.chart.axis.min({y: 0, x: tmin});
 
 			// $scope.chart.axis.range({{max: {y:10, x: tmax}, min: {y: 0, x: tmin}}});
 			// $scope.chart.axis.tick({x: [x[0], x[x.length-1]]})
