@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="/app.css">
 </head>
 
@@ -21,8 +22,8 @@
 			<span>{{post.body}}</span>
 		</li>
 	</ul>
-</div>
- -->
+</div> -->
+
 <!-- <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'> -->
 <!-- <div ng-init="showGraph(power)" ng-controller="GraphCtrl" class='container' onload="init('power')"> -->
 <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
@@ -41,11 +42,16 @@
 <script src='/app.js'></script>
 
 <!-- Load c3.css -->
-<link href="/c3/c3.css" rel="stylesheet">
+<!-- <link href="/c3/c3.css" rel="stylesheet"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" rel="stylesheet">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css" rel="stylesheet"> -->
 
 <!-- Load d3.js and c3.js -->
-<script src="/d3/d3.js" charset="utf-8"></script>
-<script src="/c3/c3.js"></script>
+<!-- <script src="/d3/d3.js" charset="utf-8"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.min.js" charset="utf-8"></script>
+
+<!-- <script src="/c3/c3.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
 
 </body>
 </html>
