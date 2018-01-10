@@ -33,7 +33,10 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 				columns: [
 					x,
 					y,
-				]
+				],
+				point: {
+					show: false
+				}
               },
              axis: {
 	             	x: {
