@@ -23,6 +23,7 @@ router.get('/api/power/:tmin/:column', function(req, res, next) {
           var tmin =  new Date(parseInt(req.params.tmin));
 
           // dbObject.collection("power").find({"time" : {$gte : tmin}}).toArray(function(err, docs){
+            console.log(req.params)
           dbObject.collection(req.params.column).find({"time" : {$gte : tmin}}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
@@ -32,15 +33,16 @@ router.get('/api/power/:tmin/:column', function(req, res, next) {
             var doc = docs[index];
             //category array
             var t = doc['time'];
+            var y = doc[req.params.column];
             //series 2 values array
-            var count = doc['count'];
+            var count = doc[req.param.column];
             dateArray.push({"time": t});
             counts.push({"value" : count});
           }
        
           var dataset = [
             {
-              "seriesname" : "power",
+              "seriesname" : req.params.column,
               "data" : counts
             },
           ];
