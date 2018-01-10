@@ -5,7 +5,7 @@ var router = express.Router()
 router.use(express.static(__dirname + '/../assets'))
 
 router.get('/', function(req, res) {
-	res.sendFile('/home/marius/src/mean_example/muehle_ui/layouts/app.html')
+	res.sendFile('app.html', {root: __dirname + '/../layouts'})
 })
 
 module.exports = router
