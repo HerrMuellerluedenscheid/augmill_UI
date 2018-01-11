@@ -26,11 +26,12 @@
 
 <!-- <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'> -->
 <!-- <div ng-init="showGraph(power)" ng-controller="GraphCtrl" class='container' onload="init('power')"> -->
+
 <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
+	<div id="power"></div>
 	<button ng-click='zoomGraphIn()', class=btn btn-default>Zoom In</button>
 	<button ng-click='zoomGraphOut()', class=btn btn-default>Zoom Out</button>
-	<div id="#power"></div>
-	<!-- <div id="graphs"></div> -->
+	<div id="graphs"></div>
 
 	<span>Aktuelle Leistung: {{lastPower}} kWH</span>
 </div>
@@ -48,10 +49,13 @@
 
 <!-- Load d3.js and c3.js -->
 <!-- <script src="/d3/d3.js" charset="utf-8"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>-->
+<script src="/d3/d3.js" charset="utf-8"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.min.js" charset="utf-8"></script> -->
 
 <!-- <script src="/c3/c3.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
 
 </body>
 </html>
