@@ -58,10 +58,8 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		
 		PowerSvc.fetch(tmin=tmin, column=$scope.column).then(function(response) {
 			$scope.power = response.data;
-			$scope.lastPower = y[y.length-1].value;
 		})
 
-		console.log($scope.power);
 		if ($scope.power !== null) {
 			$scope.power.categories.forEach(function(element){
 				x.push(element.time);
@@ -74,6 +72,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 
 			// $scope.chart.axis.range({{max: {y:10, x: tmax}, min: {y: 0, x: tmin}}});
 			// $scope.chart.axis.tick({x: [x[0], x[x.length-1]]})
+			$scope.lastPower = y[y.length-1].value;
 			$scope.chart.load({
 				columns: [
 					x,
@@ -81,6 +80,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 				]
 			})
 		}
+
 	}
 
 	setInterval($scope.setGraphData, 3000);
