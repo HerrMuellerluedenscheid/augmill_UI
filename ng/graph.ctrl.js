@@ -83,5 +83,5 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		}
 	}
 
-	setInterval($scope.setGraphData, 1000);
+	setInterval($scope.setGraphData, 3000);
 })
