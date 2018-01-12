@@ -30,7 +30,7 @@ router.get('/api/power/:tmin/:column', function(req, res, next) {
             var doc = docs[index];
             var t = doc['time'];
 
-            var count = doc['power'];
+            var count = doc['count'];
             dateArray.push({"time": t});
             counts.push({"value" : count});
           }
