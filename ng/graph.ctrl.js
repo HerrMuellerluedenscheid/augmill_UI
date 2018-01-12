@@ -3,7 +3,7 @@ var app = angular.module('app')
 app.controller('GraphCtrl', function($scope, PowerSvc) {
 	$scope.chart = null;
 	$scope.power = null;
-	$scope.nseconds_view = 60.;
+	$scope.nseconds_view = 30.;
 
 	$scope.zoomGraphIn = function() {
 		$scope.nseconds_view = $scope.nseconds_view / 2.;
@@ -20,32 +20,40 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		var y = ['Strom'];
 		var x = ['x'];
 
-
 		$scope.chart = c3.generate({
 			bindto: '#power',
 			data:{
 				x: 'x',
+				// xFormat: 'H:%M:%S',
 				xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
 				columns: [
 					x,
 					y,
 				],
-				// point: {
-				// 	show: false
-				// }
-              },
-             axis: {
-	             	x: {
-	             		type: 'timeseries',
-	             		tick: {
-	             			format: '%Y-%m-%dT%H:%M:%S.%LZ',
-	             			// values: ['']
-	             		}
-	             	}
-             }
+			},
+			// point: {
+			// 	show: false
+			// },
+             		axis: {
+	             	     x: {
+				// type: 'scatter',
+	             	     	type: 'timeseries',
+	             	     	tick: {
+	             	     		// format: '%H:%M:%S',
+					format: 'T%H:%M:%S'
+					// culling: {
+					// 	max: 4,
+	             	     		//         format: '%H:%M:%S',
+					// }
+			     		// rotate: 75,
+			     		// multiline: false
+	             	     		// values: ['']
+	             	     	}
+	             	     }
+             		}
 		})
 		setTimeout(function(){
-		}, 1000)
+		}, 500)
 		$scope.setGraphData()
 	}
 
@@ -65,19 +73,19 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 				x.push(element.time);
 			})
 			$scope.power.dataset.forEach(function(element){
-				y.push(element.value);
+				y.push(element.value/1000.);
 			})
-			// $scope.chart.axis.max({y: 10, x: new Date()});
-			// $scope.chart.axis.min({y: 0, x: tmin});
+			$scope.chart.axis.max({y: 5.});//, x: new Date()});
+			$scope.chart.axis.min({y: 2.}); //, x: tmin});
 
-			// $scope.chart.axis.range({{max: {y:10, x: tmax}, min: {y: 0, x: tmin}}});
 			// $scope.chart.axis.tick({x: [x[0], x[x.length-1]]})
-			$scope.lastPower = y[y.length-1].value;
-			$scope.chart.load({
+			$scope.lastPower = y[y.length-1];
+			$scope.chart.flow({
 				columns: [
 					x,
 					y
-				]
+				],
+				duration: 2000.,
 			})
 		}
 
