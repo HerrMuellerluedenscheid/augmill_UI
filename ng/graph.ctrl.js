@@ -6,6 +6,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 	$scope.nseconds_view = 30.;
 
 	$scope.zoomGraphIn = function() {
+		console.log('zoom in');
 		$scope.nseconds_view = $scope.nseconds_view / 2.;
 		$scope.setGraphData();
 	}

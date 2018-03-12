@@ -16,6 +16,8 @@ app.use(require('./controllers/api/power_meter'))
 // serves the static (html) file
 app.use(require('./controllers/static'))
 
+app.use(require('./controllers/cleaning'))
+
 app.listen(port, function(){
 	console.log('Server listening on', port)
 })

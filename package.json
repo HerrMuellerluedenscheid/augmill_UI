@@ -17,6 +17,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^3.0.0",
-    "mongoose": "^4.12.3"
+    "mongoose": "^4.12.3",
+    "onoff": "^2.0.0"
   }
 }

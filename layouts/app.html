@@ -29,11 +29,15 @@
 
 <div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
 	<div id="power"></div>
-	<button ng-click='zoomGraphIn()', class=btn btn-default>Zoom In</button>
-	<button ng-click='zoomGraphOut()', class=btn btn-default>Zoom Out</button>
+	<button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</button>
+	<button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</button>
 	<div id="graphs"></div>
 
 	<span>Aktuelle Leistung: {{lastPower}} kWH</span>
+</div>
+
+<div ng-controller="CleansingCtrl" class='container'>
+	<button ng-click='reinigungsKlappe()', id='cleaning', class=btn btn-default>Reinigungsklappe</button>
 </div>
 
 <!-- load angular js (using current version) -->
