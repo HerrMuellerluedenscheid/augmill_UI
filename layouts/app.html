@@ -38,13 +38,13 @@
 			<div ng-init="showGraph()" ng-controller="GraphCtrl">
 				<div id="power"></div>
 				<span>Leistung: {{lastPower}} kW</span>
-				<md-button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</md-button>
-				<md-button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</md-button>
+				<md-button ng-click='zoomGraphIn()'>Zoom in</md-button>
+				<md-button ng-click='zoomGraphOut()'>Zoom out</md-button>
 			</div>
 
 			<div ng-controller="CleansingCtrl">
-					<!-- <md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button> -->
-					<md-button class = "md-raised md-primary" ng-click=''>Ein Knopf der nichts tut</md-button>
+				<!-- <md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button> -->
+				<md-button class="md-raised md-primary" ng-click=''>Ein Knopf der nichts tut</md-button>
 			</div>
 		</md-card-content>
 	</md-card>
