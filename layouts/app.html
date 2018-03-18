@@ -38,8 +38,10 @@
 			<span>Aktuelle Leistung: {{lastPower}} kW</span>
 		</div>
 
-		<div ng-controller="CleansingCtrl" class='container'>
-			<md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()', id='cleaning'>Reinigungsklappe</md-button>
+		<div ng-controller="CleansingCtrl" class='container' layout="column">
+			<md-content class = "md-padding">
+				<md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button>
+			</md-content>
 		</div>
 
 		<script src='/app.js'></script>
