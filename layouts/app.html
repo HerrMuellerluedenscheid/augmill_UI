@@ -28,19 +28,20 @@
 			<h2 class = "md-flex">Augustinermuehle</h2>
 		</div>
 	</md-toolbar>
+	<md-card>
 	<md-content flex layout-padding>
 		<div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
 			<div id="power"></div>
-			<button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</button>
-			<button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</button>
-			<div id="graphs"></div>
+			<span>Leistung: {{lastPower}} kW</span>
+			<md-button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</md-button>
+			<md-button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</md-button>
 
-			<span>Aktuelle Leistung: {{lastPower}} kW</span>
 		</div>
 
 		<div ng-controller="CleansingCtrl" class='container' layout="column">
 			<md-content class = "md-padding">
-				<md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button>
+				<!-- <md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button> -->
+				<md-button class = "md-raised md-primary" ng-click='function() {console.log("X")'>Ein Knopf der nichts tut</md-button>
 			</md-content>
 		</div>
 
@@ -49,5 +50,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
 	</md-content>
+	</md-card>
 </body>
 </html>
