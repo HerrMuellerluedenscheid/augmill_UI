@@ -25,7 +25,7 @@
 <body ng-app='app' ng-cloak>
 	<md-toolbar class = "md-warn">
 		<div class = "md-toolbar-tools">
-			<h2 class = "md-flex">HTML 5</h2>
+			<h2 class = "md-flex">Augustinermuehle</h2>
 		</div>
 	</md-toolbar>
 	<md-content flex layout-padding>
@@ -39,7 +39,7 @@
 		</div>
 
 		<div ng-controller="CleansingCtrl" class='container'>
-			<button ng-click='reinigungsKlappe()', id='cleaning', class=btn btn-default>Reinigungsklappe</button>
+			<md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()', id='cleaning'>Reinigungsklappe</md-button>
 		</div>
 
 		<script src='/app.js'></script>
