@@ -29,27 +29,32 @@
 		</div>
 	</md-toolbar>
 	<md-card>
-	<md-content flex layout-padding>
-		<div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
-			<div id="power"></div>
-			<span>Leistung: {{lastPower}} kW</span>
-			<md-button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</md-button>
-			<md-button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</md-button>
+		<md-card-header>
+			<md-card-header-text>
+				Leistung
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-content flex layout-padding>
+			<div ng-init="showGraph()" ng-controller="GraphCtrl" class='container'>
+				<div id="power"></div>
+				<span>Leistung: {{lastPower}} kW</span>
+				<md-button ng-click='zoomGraphIn()', class=btn btn-default>Zoom in</md-button>
+				<md-button ng-click='zoomGraphOut()', class=btn btn-default>Zoom out</md-button>
 
-		</div>
+			</div>
 
-		<div ng-controller="CleansingCtrl" class='container' layout="column">
-			<md-content class = "md-padding">
-				<!-- <md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button> -->
-				<md-button class = "md-raised md-primary" ng-click='function() {console.log("X")'>Ein Knopf der nichts tut</md-button>
-			</md-content>
-		</div>
+			<div ng-controller="CleansingCtrl" class='container' layout="column">
+				<md-content class = "md-padding">
+					<!-- <md-button class = "md-raised md-primary" ng-click='reinigungsKlappe()'>Reinigungsklappe</md-button> -->
+					<md-button class = "md-raised md-primary" ng-click=''>Ein Knopf der nichts tut</md-button>
+				</md-content>
+			</div>
 
-		<script src='/app.js'></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
-	</md-content>
+			<script src='/app.js'></script>
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" rel="stylesheet">
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+		</md-card-content>
 	</md-card>
 </body>
 </html>
