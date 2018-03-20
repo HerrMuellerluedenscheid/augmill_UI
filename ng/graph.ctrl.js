@@ -1,5 +1,6 @@
 var app = angular.module('app')
 
+
 app.controller('GraphCtrl', function($scope, PowerSvc) {
 	$scope.chart = null;
 	$scope.power = null;

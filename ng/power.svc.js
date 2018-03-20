@@ -5,6 +5,6 @@ var app = angular.module('app')
 // Dependency inject $http
 app.service('PowerSvc', function($http) {
 	this.fetch = function(tmin, column) {
-		return $http.get('/api/power/' + tmin  + '/' + column);
+		return $http.get('/api/' + tmin  + '/' + column);
 	}
 })
