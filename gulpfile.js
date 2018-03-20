@@ -1,6 +1,7 @@
 var gulp = require('gulp')
 var concat = require('gulp-concat')
 var ubglify = require('gulp-uglify')
+var babel = require('gulp-babel')
 var ngAnnotate = require('gulp-ng-annotate')
 var sourcemap = require('gulp-sourcemaps')
 var fs = require('fs')
@@ -26,6 +27,7 @@ gulp.task('js', function() {
 	.pipe(sourcemap.init())
 	.pipe(concat('app.js'))
 	.pipe(ngAnnotate())			// avoid unintended compression
+	.pipe(babel({presets: ['env']}))
 	.pipe(ubglify())			// compress code
 	.pipe(sourcemap.write())  	// great for debugging
 	.pipe(gulp.dest('assets'))
