@@ -22,7 +22,7 @@ router.get('/api/:tmin/:column', function(req, res, next) {
 
           var tmin =  new Date(parseInt(req.params.tmin));
 
-          dbObject.collection(req.params.column).find({"time" : {$gte : tmin}}).toArray(function(err, docs){
+          dbObject.collection(req.params.column).find({"time" : {$gt: tmin}}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
           var counts = [];
