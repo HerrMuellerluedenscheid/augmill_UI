@@ -32,6 +32,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 
 	$scope.nseconds_view = settings.nseconds_view;
 	$scope.data_column = settings.data_column;
+	$scope.power = null;
 	var tmin = new Date() - $scope.nseconds_view;
 
 	$scope.zoomGraphIn = function() {
@@ -47,7 +48,6 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 	$scope.showGraph = function() {
 		var yinit = [settings.label];
 		var xinit = ['x'];
-		var tmin = new Date() - $scope.nseconds_view*1000.;
 		
 		PowerSvc.fetch(tmin, $scope.data_column)
 			.then((response) => {$scope.power = response.data;})
