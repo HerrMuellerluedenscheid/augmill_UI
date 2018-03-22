@@ -1,15 +1,36 @@
+"use strict";
+
+
 var app = angular.module('app')
 
 
+/**
+* Define basic settings of a Graph instance
+*
+* @param {string} bindto - id of <div> to bind graph to
+* @param {string} data_column - data_column name in MongoDB
+* @param {string} label - label of graph in panel
+* @param {float} nseconds_view - milliseconds visible at startup
+*/
 function GraphSettings(bindto, data_column, label, nseconds_view) {
+
 	this.bindto = bindto,
 	this.data_column = data_column,
 	this.label = label,
-	this.nseconds_view = nseconds_view
+	this.nseconds_view = nseconds_view;
 }
 
 
+/**
+* Generate discrete, sane tick values
+*
+* @param minmax {array} minmax - data range(length=2)
+*/
 function TicksFromRange(minmax) {
+	if (minmax.length != 2) {
+		return minmax;
+	}
+
 	let min = minmax[0].getTime();
 	let max = minmax[1].getTime();
 	let tick_delta = 10000.;

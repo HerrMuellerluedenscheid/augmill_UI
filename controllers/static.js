@@ -8,4 +8,4 @@ router.get('/', function(req, res) {
 	res.sendFile('app.html', {root: __dirname + '/../layouts'})
 })
 
-module.exports = router
+module.exports = router;

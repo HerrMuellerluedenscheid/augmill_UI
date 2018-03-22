@@ -46,4 +46,4 @@ router.get('/api/:tmin/:column', function(req, res, next) {
       }
     )
 
-module.exports = router
+module.exports = router;
