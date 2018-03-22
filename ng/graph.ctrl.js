@@ -53,7 +53,7 @@ function TicksFromRange(minmax) {
 app.controller('GraphCtrl', function($scope, PowerSvc) {
 
 	const interval = 2000.;
-	var settings = new GraphSettings('#power', 'power', 'Strom', 60000.);
+	var settings = new GraphSettings('power', 'Strom', 60000.);
 
 	$scope.nseconds_view = settings.nseconds_view;
 	$scope.data_column = settings.data_column;
