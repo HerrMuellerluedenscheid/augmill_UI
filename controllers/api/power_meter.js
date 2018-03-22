@@ -21,7 +21,6 @@ MongoClient.connect(dbHost, function(err, db){
 router.get('/api/:tmin/:column', function(req, res, next) {
 
           var tmin =  new Date(parseInt(req.params.tmin));
-
           dbObject.collection(req.params.column).find({"time" : {$gt: tmin}}).toArray(function(err, docs){
           if ( err ) throw err;
           var dateArray = [];
@@ -32,7 +31,8 @@ router.get('/api/:tmin/:column', function(req, res, next) {
             var t = doc['time'];
 
             var count = doc['count'];
-            dateArray.push({"time": t});
+            // dateArray.push({"time": new Date(t).toISOString()});
+            dateArray.push({"time": t})
             counts.push({"value" : count});
           }
        

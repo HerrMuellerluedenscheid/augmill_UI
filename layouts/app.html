@@ -36,19 +36,32 @@
 				Leistung
 			</md-card-header-text>
 		</md-card-header>
-		<md-card-content flex layout-padding>
-			<div ng-init="showGraph()" ng-controller="GraphCtrl">
+	  	<md-card-content flex layout-padding>
+			<div ng-init="showGraph()" ng-controller="PowerGraphCtrl">
 				<div id="power"></div>
 				<span>Leistung: {{lastPower}} kW</span>
-				<!-- <md-button ng-click='zoomGraphIn()'>Zoom in</md-button>
-				<md-button ng-click='zoomGraphOut()'>Zoom out</md-button> -->
 			</div>
 
 			<div ng-controller="CleansingCtrl">
 				<button color="primary" ng-click='reinigungsKlappe()'>Reinigung</button>
-				<!-- <md-button class="md-raised md-primary" ng-click=''>Ein Knopf der nichts tut</md-button>-->
 			</div>
 		</md-card-content>
+	</md-card>
+	<md-card>
+		<md-card-header>
+			<md-card-header-text>
+				Wasserstand
+			</md-card-header-text>
+		</md-card-header>
+
+	  	<!-- <md-card-content>
+			<div ng-init="showGraph()" ng-controller="WaterLevelGraphCtrl">
+				<div id="water_level"></div>
+				<span>Wasserstand: {{lastPower}}</span>
+			</div>
+		</md-card-content>
+		-->
+
 	</md-card>
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css" rel="stylesheet">
