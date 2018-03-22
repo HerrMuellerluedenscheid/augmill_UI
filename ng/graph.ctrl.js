@@ -4,20 +4,24 @@
 var app = angular.module('app')
 
 
-/**
-* Define basic settings of a Graph instance
-*
-* @param {string} bindto - id of <div> to bind graph to
-* @param {string} data_column - data_column name in MongoDB
-* @param {string} label - label of graph in panel
-* @param {float} nseconds_view - milliseconds visible at startup
-*/
-function GraphSettings(bindto, data_column, label, nseconds_view) {
+class GraphSettings{
+	/**
+	* Define basic settings of a Graph instance
+	*
+	* @param {string} data_column - data_column name in MongoDB
+	* @param {string} label - label of graph in panel
+	* @param {float} nseconds_view - milliseconds visible at startup
+	*/
+	constructor(data_column, label, nseconds_view) {
 
-	this.bindto = bindto,
-	this.data_column = data_column,
-	this.label = label,
-	this.nseconds_view = nseconds_view;
+		this.data_column = data_column
+		this.label = label
+		this.nseconds_view = nseconds_view
+	}
+
+	get bindto() {
+		return '#' + this.data_column;
+	}
 }
 
 
