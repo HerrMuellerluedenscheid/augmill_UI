@@ -12,15 +12,17 @@ class GraphSettings{
 	* @param {string} label - label of graph in panel
 	* @param {float} nseconds_view - milliseconds visible at startup
 	*/
-	constructor(data_column, label, nseconds_view, refresh_interval=undefined,
-		tick_interval=undefined, ymin=undefined, ymax=undefined) {
+	constructor(data_column, label, nseconds_view, refresh_interval=2000.,
+		tick_interval=undefined, ymin=undefined, ymax=undefined, show_points=true) {
 
-		this.data_column = data_column
-		this.label = label
-		this.nseconds_view = nseconds_view
-		this.ymin = ymin 
-		this.ymax = ymax
-		this.tick_interval = tick_interval
+		this.data_column = data_column;
+		this.label = label;
+		this.nseconds_view = nseconds_view;
+		this.refresh_interval = refresh_interval;
+		this.ymin = ymin ;
+		this.ymax = ymax;
+		this.tick_interval = tick_interval;
+		this.show_points = show_points;
 	}
 
 	get bindto() {
@@ -59,11 +61,12 @@ app.controller('PowerGraphCtrl', function($scope, $controller) {
 })
 
 
-// app.controller('WaterLevelGraphCtrl', function($scope, $controller) {
-// 	$scope.settings = new GraphSettings('water_level', 'Wasserstand', 60000., 10000, 10000);
-// 	$controller('GraphCtrl', {$scope: $scope});
-// })
-// 
+app.controller('WaterLevelGraphCtrl', function($scope, $controller) {
+	$scope.settings = new GraphSettings('water_level', 'Wasserstand', 60000., 20000., 600000.);
+	$scope.settings.show_points = false;
+	$controller('GraphCtrl', {$scope: $scope});
+})
+
 
 app.controller('GraphCtrl', function($scope, PowerSvc) {
 
@@ -82,7 +85,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		$scope.setGraphData();
 	}
 
-	$scope.showGraph = function() {
+	function showGraph() {
 		var yinit = [$scope.settings.label];
 		var xinit = ['x'];
 		
@@ -100,6 +103,12 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 				xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
 				columns: [xinit, yinit,],
 			},
+			point: {
+				show: $scope.settings.show_points,
+			},
+			zoom: { 
+				enabled: false,
+			},
              		axis: {
 	             	     x: {
 	             	     	type: 'timeseries',
@@ -114,7 +123,7 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 
 		$scope.chart.axis.max({y: $scope.settings.ymax});
 		$scope.chart.axis.min({y: $scope.settings.ymin});
-
+		setTimeout($scope.setGraphData, 1500);
 	}
 
 	$scope.setGraphData = function() {
@@ -135,6 +144,6 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 		tmin = new Date($scope.lastTime).getTime() + $scope.settings.refresh_interval;
 
 	}
-
+	showGraph();
 	setInterval($scope.setGraphData, $scope.settings.refresh_interval);
 })
