@@ -17,33 +17,27 @@ MongoClient.connect(dbHost, function(err, db){
   dbObject = db;
 })
 
+
+
 // Serves the power data at this url
-router.get('/api/:tmin/:column', function(req, res, next) {
+router.get('/api/:tmin/:column', async (req, res, next) => {
 
           // var tmin =  new Date(parseInt(req.params.tmin));
           var tmin =  new Date(parseInt(req.params.tmin));
-          dbObject.collection(req.params.column).find({"time" : {$gt: tmin}}).toArray(function(err, docs){
-          if ( err ) throw err;
+          const cursor = dbObject.collection(req.params.column).find({"time" : {$gt: tmin}});
           var dateArray = [];
           var counts = [];
-       
-          for ( index in docs ){
-            var doc = docs[index];
-            var t = doc['time'];
-
-            var count = doc['count'];
-            // dateArray.push({"time": new Date(t)});
-            dateArray.push({"time": t})
-            counts.push({"value" : count});
-          }
+       	  var i = 0;
+	  for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+		dateArray[i] = doc['time'];
+		counts[i++]= doc['count'];
+	  }
           var response = {
             "dataset" : counts,
-            "categories" : dateArray
+            "time" : dateArray
           };
 
           res.json(response);
-        });
-      }
-    )
+});
 
 module.exports = router;
