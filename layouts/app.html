@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Augustinermuehle</title>
+	<title>Augustinerm&uuml;hle</title>
 	<link rel = "stylesheet"
 	href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
@@ -11,6 +11,7 @@
 	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-messages.min.js"></script>
 	<script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/app.css">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -25,7 +26,11 @@
 <body ng-app='app' ng-cloak>
 	<md-toolbar class = "md-warn">
 		<div class = "md-toolbar-tools">
-			<h2 class = "md-flex">Augustinermuehle</h2>
+			<h2 class = "md-flex">Augustinerm&uuml;hle</h2>
+			<span flex></span>
+			<div ng-controller="AirCtrl" class="mat-typography">
+			Hum: {{humidity | number: 1}}%  T: {{airTemperature | number: 1}}&#176;C
+			</div>
 		</div>
 	</md-toolbar>
 	<md-card>
@@ -43,7 +48,7 @@
 			</div>
 
 			<div ng-controller="CleansingCtrl">
-				<md-button mat-button class="md-raised md-warn" ng-click='reinigungsKlappe()'>Reinigen</button>
+				<md-button mat-button class="md-raised md-warn" ng-click='reinigungsKlappe()'><md-icon md-font-library="material-icons">filter_list</md-icon>Reinigen</md-button>
 			</div>
 		</md-card-content>
 	</md-card>

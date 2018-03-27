@@ -55,6 +55,14 @@ function TicksFromRange(minmax, tick_interval) {
 }
 
 
+app.controller('AirCtrl', function($scope, PowerSvc) {
+	PowerSvc.fetch(new Date()-300000., 'air_temperature')
+		.then((response) => {$scope.airTemperature= response.data.dataset[response.data.dataset.length-1]})
+	PowerSvc.fetch(new Date()-300000., 'humidity')
+		.then((response) => {$scope.humidity = response.data.dataset[response.data.dataset.length-1]})
+})
+
+
 app.controller('PowerGraphCtrl', function($scope, $controller) {
 	$scope.settings = new GraphSettings('power', 'Strom', 60000., 3000., 5000., 2000, 5000);
 	$controller('GraphCtrl', {$scope: $scope});
