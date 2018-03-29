@@ -20,8 +20,11 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-stylus": "^2.6.0",
     "gulp-uglify": "^3.0.0",
+    "jsonwebtoken": "^8.2.0",
     "mongoose": "^4.12.3",
-    "onoff": "^2.0.0"
+    "onoff": "^2.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
