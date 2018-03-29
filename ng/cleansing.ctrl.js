@@ -25,7 +25,7 @@ app.controller('CleansingCtrl', ['$scope', '$http', '$mdDialog', '$timeout', fun
 
 		$mdDialog.show(confirm).then(function() {
 			disableButton(10000.);
-			// return $http.get('/api/clean');
+			return $http.get('/api/clean');
 		}, function() {
 			$scope.status = 'You decided to keep your debt.';
 		});
