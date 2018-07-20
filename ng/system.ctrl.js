@@ -6,10 +6,18 @@ function toTimeString(seconds) {
 }
 
 
-// declare a controller, with $scope and dependency inject the PostsSvc:
-app.controller('SystemCtrl', function($scope, $http) {
+app.controller('SystemCtrl', function($scope, $http, $interval) {
+    var tdiff = 0;
+    var boot_time = 0;
     var uptime = $http.get('/api/uptime').then(function(result) {
-	    $scope.uptime = toTimeString(result.data.uptime);
+	    boot_time = result.data.uptime
+	    set_time();
+    });
+
+    function set_time(){
+	    tdiff = tdiff + 1;
+	    $scope.uptime = toTimeString(boot_time + tdiff);
     }
-    );
+
+    $interval(set_time, 1000);
 })
