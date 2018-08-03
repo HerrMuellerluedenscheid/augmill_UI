@@ -11,6 +11,7 @@ class GraphSettings{
 	* @param {string} data_column - data_column name in MongoDB
 	* @param {string} label - label of graph in panel
 	* @param {float} nseconds_view - milliseconds visible at startup
+	* @param {int} n_average - number of points for moving average
 	*/
 	constructor(data_column, label, nseconds_view, refresh_interval=3000.,
 		tick_interval=undefined, ymin=undefined, ymax=undefined, show_points=true) {
@@ -22,6 +23,7 @@ class GraphSettings{
 		this.ymin = ymin ;
 		this.ymax = ymax;
 		this.tick_interval = tick_interval;
+		this.n_average = undefined;
 		this.show_points = show_points;
 	}
 
@@ -55,6 +57,33 @@ function TicksFromRange(minmax, tick_interval) {
 }
 
 
+function moving_average(vals, n_average){
+	var out = [];
+	var i_out = 0
+	for (var i=0; i<=vals.length; i+=n_average) {
+		var to_mean = 0;
+		for (var ix=0; ix<n_average; ix+=1) {
+		    to_mean += vals[i+ix];
+		}
+		out[i_out++] = to_mean / n_average;
+	}
+	return out;
+}
+
+
+function slice_list(vals, nth_element){
+	var out = [];
+	var i_out = 0;
+	for (var i=0; i<=vals.length; i+=nth_element) {
+		if ((i % nth_element) == 0){
+			out[i_out++] = vals[i];
+		}
+	}
+	return out;
+	
+}
+
+
 app.controller('AirCtrl', function($scope, PowerSvc) {
 	PowerSvc.fetch(new Date()-300000., 'air_temperature')
 		.then((response) => {$scope.airTemperature= response.data.dataset[response.data.dataset.length-1]})
@@ -64,14 +93,15 @@ app.controller('AirCtrl', function($scope, PowerSvc) {
 
 
 app.controller('PowerGraphCtrl', function($scope, $controller) {
-	$scope.settings = new GraphSettings('power', 'Strom', 60000., 3000., 5000., 500, 5000);
+	$scope.settings = new GraphSettings('power', 'Strom', 60000., 3000., 10000., 500, 5000);
 	$controller('GraphCtrl', {$scope: $scope});
 })
 
 
 app.controller('WaterLevelGraphCtrl', function($scope, $controller) {
-	$scope.settings = new GraphSettings('water_level', 'Wasserstand', 60000., 20000., 600000.);
+	$scope.settings = new GraphSettings('water_level', 'Wasserstand', 480000., 20000., 1800000., 12., 20.);
 	$scope.settings.show_points = false;
+	$scope.settings.n_average = 3;
 	$controller('GraphCtrl', {$scope: $scope});
 })
 
@@ -140,6 +170,10 @@ app.controller('GraphCtrl', function($scope, PowerSvc) {
 			.then(() => {
 				x = $scope.power.time;
 				y = $scope.power.dataset;
+				if ($scope.settings.n_average != undefined){
+					x = slice_list(x, $scope.settings.n_average);
+					y = moving_average(y, $scope.settings.n_average);
+				}
 
 				x.unshift('x');
 				y.unshift($scope.settings.label);
