@@ -2,7 +2,10 @@ var app = angular.module('app')
 
 
 function toTimeString(seconds) {
-	  return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+	seconds = seconds * 1000.;
+	var hours = (new Date(seconds)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+	var days = Math.floor(seconds / 86400000.);
+	return days + ' Tage,  ' +hours;
 }
 
 
