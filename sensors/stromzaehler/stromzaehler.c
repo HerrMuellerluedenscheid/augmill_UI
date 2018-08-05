@@ -85,7 +85,7 @@ void myInterrupt (void)
  */
 int main (int argc, char *argv[])
 {
-  char table[32];
+  char table[32] = "power";
   char *xx;
   int myCounter = 0 ;
   int gpio_pin;
@@ -134,7 +134,7 @@ int main (int argc, char *argv[])
 		(int)(power*1000.),
 		current_time_with_ms(),
 		"muehle",
-		"power_main");
+		table);
     } else {
             printf("skipped: %i\n", n_skipped);
             printf("Leistung: %1.2f\n", power);
